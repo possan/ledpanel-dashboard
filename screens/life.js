@@ -37,6 +37,10 @@ LifeScreen.prototype.start = function() {
 
 LifeScreen.prototype.update = function(adapter) {
 
+  if (this.fr % 10 == 0) {
+    this.seed(1);
+  }
+
   if (this.fr % 1 == 0) {
 
     // iterate from g -> g2
@@ -77,10 +81,6 @@ LifeScreen.prototype.update = function(adapter) {
     }
     // copy from g2 to g
     this.g.copyFrom(this.g2);
-  }
-
-  if (this.fr % 10 == 0) {
-    this.seed(2);
   }
 
   // draw
