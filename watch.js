@@ -39,11 +39,13 @@ function updateSelf(callback) {
 var runner = null;
 
 function startLoop(callback) {
-  runner = fork('test.js');
+  console.log('Starting animation...');
+  runner = fork('test.js', { silent: true });
   setTimeout(callback, 1000);
 }
 
 function killProcess(callback) {
+  console.log('Kill animation...');
   runner.kill()
   setTimeout(callback, 1000);
 }
