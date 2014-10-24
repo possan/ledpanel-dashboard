@@ -40,10 +40,10 @@ FlagScreen.prototype.update = function(adapter) {
       var y2 = lerp(j+0.5, 0, 16, -3, fh+3 );
 
       x2 += 3.0 * Math.sin(this.fr / 8.0 + j / 20.0 - i / 9.0);
-      x2 += 1.0 * Math.cos( i / 7.0 + this.fr / 19.0 + j / 34.0 );
+      x2 += 1.0 * Math.cos( i / 6.0 + this.fr / 19.0 + j / 34.0 );
 
-      y2 += 3.0 * Math.cos(this.fr / 9.0 + i / 23.0 + j / 11.0);
-      y2 += 1.0 * Math.sin( i / 7.0 + j / 10.0 + this.fr / 32.0 );
+      y2 += 3.0 * Math.cos(this.fr / 7.0 + i / 5.0 + j / 11.0);
+      y2 += 1.0 * Math.sin( i / 7.0 + j / 10.0 + this.fr / 5.0 );
 
       x2 = Math.floor(x2);
       y2 = Math.floor(y2);
