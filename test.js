@@ -26,4 +26,6 @@ adapter.findSerial(function(port) {
 	if (port) adapter.connectSerial(port);
 });
 
+adapter.preview = true;
+
 mixer.start(adapter);
