@@ -40,7 +40,7 @@ var runner = null;
 
 function startLoop(callback) {
   console.log('Starting animation...');
-  runner = fork('test.js', { silent: false });
+  runner = fork('run.js', { silent: false });
   setTimeout(callback, 1000);
 }
 
