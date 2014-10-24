@@ -8,20 +8,15 @@ var EbolaScreen = function() {
 }
 
 EbolaScreen.prototype.activate = function() {
-  console.log('EbolaScreen: activate');
 }
 
 EbolaScreen.prototype.deactivate = function() {
-  console.log('EbolaScreen: deactivate');
 }
 
 EbolaScreen.prototype.start = function() {
-  console.log('EbolaScreen: start');
 }
 
 EbolaScreen.prototype.update = function(adapter) {
-  console.log('EbolaScreen: update');
-
   this.g.clear();
 
   var str = 'TIME TO EBOLA';
