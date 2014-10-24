@@ -1,0 +1,16 @@
+{
+  "name": "ledpanel",
+  "version": "0.0.0",
+  "description": "",
+  "main": "ledpanel.js",
+  "dependencies": {
+    "moment": "~2.8.3",
+    "serialport": "~1.4.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
