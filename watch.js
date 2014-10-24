@@ -5,33 +5,35 @@ var exec = require('child_process').exec;
 var fork = require('child_process').fork;
 
 function execAndReturnStdout(command, callback) {
-    console.log('executing: ' + command);
-    exec(command, function(error, stdout, stderr) {
-        /*
-        console.log('stdout: ' + stdout);
-        console.log('stderr: ' + stderr);
-        */
-        if (error !== null) {
-          console.log('exec error: ' + error);
-        }
-        if (stdout) {
-            callback(stdout.trim());
-        } else {
-            callback(null);
-        }
-    });
+  console.log('executing: ' + command);
+  exec(command, function(error, stdout, stderr) {
+    /*
+    console.log('stdout: ' + stdout);
+    console.log('stderr: ' + stderr);
+    */
+    if (error !== null) {
+      console.log('exec error: ' + error);
+    }
+    if (stdout) {
+        callback(stdout.trim());
+    } else {
+        callback(null);
+    }
+  });
 }
 
 function getLocalVersion(callback) {
-    execAndReturnStdout('git rev-parse HEAD', callback);
+  execAndReturnStdout('git rev-parse HEAD', callback);
 }
 
 function getRemoteVersion(callback) {
-    execAndReturnStdout('git rev-parse ' + remote + '/' + branch, callback);
+  execAndReturnStdout('git rev-parse ' + remote + '/' + branch, callback);
 }
 
 function updateSelf(callback) {
+  execAndReturnStdout('git reset --hard ' + remote + '/' + branch, function() {
     execAndReturnStdout('git pull ' + remote + ' ' + branch, callback);
+  });
 }
 
 var runner = null;
