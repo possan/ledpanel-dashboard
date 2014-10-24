@@ -1,7 +1,7 @@
 var util = require('../lib/util');
 
 var FlagScreen = function() {
-  this.screenFrames = 150;
+  this.screenFrames = 250;
   this.fr = 0;
   this.g = new util.PixelBuffer();
   this.flag = [
@@ -36,8 +36,8 @@ FlagScreen.prototype.update = function(adapter) {
   for(var j=0; j<16; j++) {
     for(var i=0; i<64; i++) {
 
-      var x2 = lerp(i+0.5, 0, 64, -2, fw+2 );
-      var y2 = lerp(j+0.5, 0, 16, -2, fh+2 );
+      var x2 = lerp(i+0.5, 0, 64, -3, fw+3 );
+      var y2 = lerp(j+0.5, 0, 16, -3, fh+3 );
 
       x2 += 3.0 * Math.sin(this.fr / 8.0 + j / 20.0 - i / 9.0);
       x2 += 1.0 * Math.cos( i / 7.0 + this.fr / 19.0 + j / 34.0 );
