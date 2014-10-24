@@ -1,19 +1,19 @@
 var util = require('../lib/util');
 
 var LifeScreen = function() {
-  this.screenFrames = 150;
+  this.screenFrames = 200;
   this.fr = 0;
   this.g = new util.PixelBuffer();
   this.g2 = new util.PixelBuffer();
 }
 
 LifeScreen.prototype.seed = function(n) {
-  for(var i=0; i<n; i++) {
+  for(var i=0; i<n * 3; i++) {
     var bx = Math.random() * 64;
     var by = Math.random() * 16;
 
     this.g.setPixel(bx, by, true);
-    for(var k=0; k<2; k++) {
+    for(var k=0; k<3; k++) {
       this.g.setPixel(bx - 4 + Math.random() * 9, by - 4 + Math.random() * 9, true);
     }
   }
