@@ -27,7 +27,9 @@ function getLocalVersion(callback) {
 }
 
 function getRemoteVersion(callback) {
-  execAndReturnStdout('git rev-parse ' + remote + '/' + branch, callback);
+  execAndReturnStdout('git fetch --all', function() {
+    execAndReturnStdout('git rev-parse ' + remote + '/' + branch, callback);
+  });
 }
 
 function updateSelf(callback) {
