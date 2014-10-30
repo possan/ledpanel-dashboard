@@ -45,7 +45,7 @@ GifTestScreen.prototype.update = function(adapter) {
         }
       }
   	}
-    this.fr += 0.33;
+    this.fr += 0.5;
   }
   adapter.update(this.g);
 }
