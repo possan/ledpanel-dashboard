@@ -5,7 +5,8 @@
   "main": "ledpanel.js",
   "dependencies": {
     "moment": "~2.8.3",
-    "serialport": "~1.4.6"
+    "serialport": "~1.4.6",
+    "vectors": "0.1.0"
   },
   "devDependencies": {},
   "scripts": {
