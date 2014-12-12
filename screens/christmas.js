@@ -24,7 +24,7 @@ var ChristmasScreen = function() {
   this.flame = {
     width: 8,
     height: 8,
-    rate: 6,
+    rate: 3,
     frames: [
       [
         '.......',
