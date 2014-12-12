@@ -10,6 +10,17 @@ var ChristmasScreen = function() {
   this.candlewidth = 12;
   this.candleheight = 14;
 
+  this.snowflakes = [];
+  for(var i=0; i<30; i++) {
+    this.snowflakes.push({
+      x: 4 + (Math.random() * 56),
+      y: -25.0 + Math.random() * 30.0,
+      t: -20.0 + Math.random() * 30.0,
+      r1: 4.0 + Math.random(),
+      r2: 2.0 + Math.random(),
+    })
+  }
+
   this.flame = {
     width: 8,
     height: 8,
@@ -200,6 +211,25 @@ ChristmasScreen.prototype.update = function(adapter) {
 
   // overlay the moss
   this.drawSprite(this.moss, 0, 10, 0);
+
+  // draw some snow
+  for(var i=0; i<this.snowflakes.length; i++) {
+    var sf = this.snowflakes[i];
+
+    var dx = sf.r1 * Math.sin(sf.t / 4.0)
+    var dy = sf.r2 * Math.cos(sf.t / 5.0)
+    var x = sf.x + dx;
+    var y = sf.y + dy;
+
+    if (y >= 0.0 && y < 14.0)
+      this.g.setPixel(x, y, true);
+
+    sf.t += 0.5;
+    sf.y += 0.33;
+    if (sf.y > 14.0) {
+      sf.y -= 20.0 + Math.random() * 10.0;
+    }
+  }
 
   // boom
   adapter.update(this.g);
