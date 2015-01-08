@@ -2,9 +2,8 @@ var util = require('../lib/util');
 var moment = require('moment');
 
 var ChristmasScreen = function() {
-  this.screenFrames = 250;
+  this.screenFrames = 0;
   this.fr = 0;
-  this.solo = true;
   this.g = new util.PixelBuffer();
 
   this.candlewidth = 12;
