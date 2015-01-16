@@ -45,7 +45,7 @@ function rotate(ox, oy, angle) {
 
 function curve(t, x) {
 	var xt = x / 17.0 + t;
-	return 2.0 * Math.sin(xt / 14.1+Math.sin(xt / 8.3)) - Math.sin(xt / 4.6 + t / 10.0) + t / 7.0 + x / 100.0;
+	return 2.0 * Math.sin(xt / 14.1+Math.sin(xt / 18.3)) - Math.sin(xt / 9.6 + t / 30.0) + t / 17.0 + x / 50.0;
 }
 
 function texLine(g, x, y0, y1, u, v0, v1, flag, shade) {
