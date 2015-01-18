@@ -122,10 +122,10 @@ TwisterScreen.prototype.update = function(adapter) {
   	// var u = x / 2.0 + this.fr * 3.0;
   	var u = lerp(x, 0, 64, 0, this.flag[0].length);
 
-  	if (y1 > y0) texLine(this.g, x, y0, y1, u + 0, 0, 15, this.flag, s0);
-  	if (y2 > y1) texLine(this.g, x, y1, y2, u + 0, 0, 15, this.flag, s1);
-  	if (y3 > y2) texLine(this.g, x, y2, y3, u + 0, 0, 15, this.flag, s2);
-  	if (y0 > y3) texLine(this.g, x, y3, y0, u + 0, 0, 15, this.flag, s3);
+  	if (y1 > y0) texLine(this.g, x, y0, y1, u + 0, 0, 18, this.flag, s0);
+  	if (y2 > y1) texLine(this.g, x, y1, y2, u + 0, 0, 18, this.flag, s1);
+  	if (y3 > y2) texLine(this.g, x, y2, y3, u + 0, 0, 18, this.flag, s2);
+  	if (y0 > y3) texLine(this.g, x, y3, y0, u + 0, 0, 18, this.flag, s3);
   }
 
   adapter.update(this.g);
