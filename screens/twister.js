@@ -74,7 +74,7 @@ TwisterScreen.prototype.update = function(adapter) {
 
   for(var y=0; y<32; y++) {
     for(var x=0; x<128; x++) {
-      this.g2.setPixel(x, y, (((y>>1)+(x>>1))%2) ? 255 : 0);
+      this.g2.setPixel(x, y, (((y+x)%7)==0) ? 255 : 0);
     }
   }
 
