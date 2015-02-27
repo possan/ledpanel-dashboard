@@ -1,7 +1,7 @@
 var util = require('../lib/util');
 
 var TwisterScreen = function() {
-  this.screenFrames = 300;
+  this.screenFrames = 800;
   this.fr = 0;
   this.g = new util.PixelBuffer();
   this.g2 = new util.PixelBuffer(128, 64);
