@@ -1,7 +1,7 @@
 var util = require('../lib/util');
 
 var FloydSteinbergScene = function() {
-  this.screenFrames = 150;
+  this.screenFrames = 0;
   this.fr = 0;
   this.solo = false;
   this.g = new util.PixelBuffer();

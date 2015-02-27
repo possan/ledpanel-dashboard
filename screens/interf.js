@@ -1,7 +1,7 @@
 var util = require('../lib/util');
 
 var InterferenceScreen = function() {
-  this.screenFrames = 150;
+  this.screenFrames = 0;
   this.g = new util.PixelBuffer();
   this.fr = 0;
 }

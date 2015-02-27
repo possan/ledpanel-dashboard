@@ -1,7 +1,7 @@
 var util = require('../lib/util');
 
 var LifeScreen = function() {
-  this.screenFrames = 200;
+  this.screenFrames = 0;
   this.fr = 0;
   this.g = new util.PixelBuffer();
   this.g2 = new util.PixelBuffer();

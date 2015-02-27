@@ -1,7 +1,7 @@
 var util = require('../lib/util');
 
 var FlagScreen = function() {
-  this.screenFrames = 250;
+  this.screenFrames = 0;
   this.fr = 0;
   this.g = new util.PixelBuffer();
   this.flag = [

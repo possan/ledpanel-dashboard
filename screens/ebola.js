@@ -2,7 +2,7 @@ var util = require('../lib/util');
 var moment = require('moment');
 
 var EbolaScreen = function() {
-  this.screenFrames = 50;
+  this.screenFrames = 0;
   this.fr = 0;
   this.g = new util.PixelBuffer();
 }

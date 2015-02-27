@@ -1,7 +1,7 @@
 var util = require('../lib/util');
 
 var WireCubeScreen = function() {
-  this.screenFrames = 150;
+  this.screenFrames = 0;
   this.fr = 0;
   this.g = new util.PixelBuffer();
   this.stars = [];

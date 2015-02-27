@@ -1,7 +1,7 @@
 var util = require('../lib/util');
 
 var SinglePixelScreen = function() {
-  this.screenFrames = 10;
+  this.screenFrames = 0;
   this.g = new util.PixelBuffer();
 }
 

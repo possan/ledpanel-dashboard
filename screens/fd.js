@@ -4,7 +4,7 @@ var mult = require('vectors/mult')(3)
 var add = require('vectors/add')(3)
 
 var FreeDirectionTunnel = function() {
-  this.screenFrames = 150;
+  this.screenFrames = 0;
   this.fr = 0;
   this.texture = [];
   for(var x = 0; x < 256; x++) {

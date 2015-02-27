@@ -3,7 +3,7 @@ var gif = require('../lib/gif');
 var fs = require('fs');
 
 var GifTestScreen = function() {
-  this.screenFrames = 150;
+  this.screenFrames = 0;
   this.fr = 0;
   this.g = new util.PixelBuffer();
   this.img = null;
