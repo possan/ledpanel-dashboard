@@ -5,87 +5,64 @@ var TwisterScreen = function() {
   this.fr = 0;
   this.solo = true;
   this.g = new util.PixelBuffer();
+  this.g2 = new util.PixelBuffer(128, 64);
   this.flag = [
-   // DDDDDD OOOOOO OOOOOO ZZZZZZ EEEEEE RRRRRR
-    // "1111111111111111111111111111111111111111111",
-    // "                                           ",
-    // "                                           ",
-    // " 1111    1111   1111  111111  11111 11111  ",
-    // " 11 11  11  11 11  11 11  11 11     11  11 ",
-    // " 11  11 11  11 11  11     11 11     11  11 ",
-    // " 11  11 11  11 11  11    11  11     11  11 ",
-    // " 11  11 11  11 11  11   11   1111   11111  ",
-    // " 11  11 11  11 11  11  11    11     11  11 ",
-    // " 11  11 11  11 11  11 11     11     11  11 ",
-    // " 11 11  11  11 11  11 11  11 11     11  11 ",
-    // " 1111    1111   1111  111111  11111 11  11 ",
-    // "                                           ",
-    // "                                           ",
-    // "1111111111111111111111111111111111111111111",
    // 123456789 123456789 123456789 123456789 123456789 123456789 123
-    "1111111111111111111111111111111111111111111111111111111111111111",
     "                                                                ",
     "                                                                ",
+    " 111111111   111111   11    11   1111111    1111111   111111111 ",
+    " 111111111  11111111  111   11  111111111  111111111  111111111 ",
+    "    11  11  11 11 11  1111  11  11     11  11     11  11     11 ",
+    "    11  11  11 11 11  11111 11  11     11  11     11  11     11 ",
+    "    11  11  11 11 11  11 11111  11     11  11     11  11     11 ",
+    "    11  11  11 11 11  11  1111  11     11  11     11  11     11 ",
+    " 111111111  11 11 11  11   111  111111111  111111111  111111111 ",
+    " 1111 111   11    11  11    11   1111111    1111111    1111111  ",
     "                                                                ",
     "                                                                ",
-    "   1111111    111111   11    11   111111    111111    111       ",
-    "   11111111  11111111  11    11  11111111  11111111  11111      ",
-    "         11  11 11 11  111   11  11    11  11    11  11 11      ",
-    "         11  11 11 11  1111  11  11    11  11    11  11 11      ",
-    "         11  11 11 11  11111 11  11    11  11    11  11 11      ",
-    "         11  11 11 11  11111111  11    11  11    11  11 11      ",
-    "         11  11 11 11  11 11111  11    11  11    11  11 11      ",
-    "         11  11 11 11  11  1111  11    11  11    11  11 11      ",
-    "         11  11 11 11  11   111  11    11  11    11  11 11      ",
-    "         11  11 11 11  11    11  11111111  11111111  11111111   ",
-    "         11  11  111   11    11   111111    111111    1111111   ",
+  ]
+  this.flag2 = [
+   // 123456789 123456789 123456789 123456789 123456789 123456789 123
+    "111111 111111 111111 111111 111111 111111 111111 111111 111111 1",
+    "11111 111111 111111 111111 111111 111111 111111 111111 111111 11",
+    "1111 111111 111111 111111 111111 111111 111111 111111 111111 111",
+    "111 111111 111111 111111 111111 111111 111111 111111 111111 1111",
+    "11 111111 111111 111111 111111 111111 111111 111111 111111 11111",
+    "1 111111 111111 111111 111111 111111 111111 111111 111111 111111",
+    " 111111 111111 111111 111111 111111 111111 111111 111111 1111111",
+  ]
+  this.flag3 = [
+   // 123456789 123456789 123456789 123456789 123456789 123456789 123
     "                                                                ",
     "                                                                ",
+    "1     1     1     1     1     1     1     1     1     1     1   ",
     "                                                                ",
     "                                                                ",
-    "1111111111111111111111111111111111111111111111111111111111111111",
+    "   1     1     1     1     1     1     1     1     1     1     1",
+    "                                                                ",
+    "                                                                ",
+    "1     1     1     1     1     1     1     1     1     1     1   ",
+    "                                                                ",
+    "                                                                ",
   ]
 }
 
 TwisterScreen.prototype.start = function() {
 }
 
-function lerp(i,in0,in1,out0,out1) {
-  var f = (i - in0) / (in1 - in0);
-  f = (f * (out1 - out0)) + out0;
-  return f;
-}
-
-function rotate(ox, oy, angle) {
-    var radians = angle * Math.PI / 180.0,
-        cos = Math.cos(radians),
-        sin = Math.sin(radians),
-        nx = (cos * ox) - (sin * oy),
-        ny = (sin * ox) + (cos * oy);
-    return [nx, ny];
-}
-
 function curve(t, x) {
 	var xt = x / 17.0 + t;
-	return -2.0 * Math.sin(xt / 14.1+Math.sin(xt / 28.3)) - 1.0 * Math.sin(xt / 9.6 + t / 30.0) + t / 20.0;
+	return -2.0 * Math.sin(xt / 14.1+Math.sin(xt / 28.3)) - 1.0 * Math.sin(xt / 9.6 + t / 30.0);
 }
 
 function texLine(g, x, y0, y1, u, v0, v1, flag, shade) {
 	for(var y=Math.round(y0); y<=Math.round(y1); y++) {
-	  	var v = lerp(y, y0, y1, v0, v1);
+	  	var v = util.lerp(y, y0, y1, v0, v1);
 	 	var scanline = flag[Math.floor(v)];//  == '1');
 		if (scanline) {
-			var p50 = (Math.round(x + y) % 2) == 0;
 			var uu = Math.floor(u) % (flag[0].length - 1);
-		  	var fp = scanline.substring(uu, uu+1) == '1';
-		  	if (shade < -0.8)
-		  		fp |= p50;
-		  	if (shade < -0.9)
-		  		fp = true;
-		  	if (shade > 0.60)
-		  		fp &= p50;
-		  	if (shade > 0.9)
-		  		fp = false;
+		  	var fp = scanline.substring(uu, uu+1) == '1' ? 255 : 0;
+        fp += shade;
 		  	g.setPixel(x, y, fp);
 	  	}
 	}
@@ -93,41 +70,65 @@ function texLine(g, x, y0, y1, u, v0, v1, flag, shade) {
 
 TwisterScreen.prototype.update = function(adapter) {
   this.g.clear();
+  this.g2.clear();
 
-  for(var x=0; x<64; x++) {
-  	var a = curve(this.fr, x) * 90.0;
-
-  	var R = 9.0;
-
-  	var p0 = rotate(-R, -R, a);
-  	var p1 = rotate( R, -R, a);
-  	var p2 = rotate( R,  R, a);
-  	var p3 = rotate(-R,  R, a);
-
-  	var t0 = rotate( 0, -1, a);
-  	var t1 = rotate( 1,  0, a);
-  	var t2 = rotate( 0,  1, a);
-  	var t3 = rotate(-1,  0, a);
-
-  	var y0 = p0[1] + 8.0;
-  	var y1 = p1[1] + 8.0;
-  	var y2 = p2[1] + 8.0;
-  	var y3 = p3[1] + 8.0;
-
-  	var s0 = 1.0 * t0[1];
-  	var s1 = 1.0 * t1[1];
-  	var s2 = 1.0 * t2[1];
-  	var s3 = 1.0 * t3[1];
-
-  	// var u = x / 2.0 + this.fr * 3.0;
-  	var u = lerp(x, 0, 64, 0, this.flag[0].length);
-
-  	if (y1 > y0) texLine(this.g, x, y0, y1, u + 0, 0, 18, this.flag, s0);
-  	if (y2 > y1) texLine(this.g, x, y1, y2, u + 0, 0, 18, this.flag, s1);
-  	if (y3 > y2) texLine(this.g, x, y2, y3, u + 0, 0, 18, this.flag, s2);
-  	if (y0 > y3) texLine(this.g, x, y3, y0, u + 0, 0, 18, this.flag, s3);
+  for(var y=0; y<32; y++) {
+    for(var x=0; x<128; x++) {
+      this.g2.setPixel(x, y, (((y>>1)+(x>>1))%2) ? 255 : 0);
+    }
   }
 
+  for(var x=0; x<128; x++) {
+  	var a = this.fr * 6 + curve(this.fr, x * 3) * 33.0;
+    var ra = 1.3 * curve(this.fr * 3, x * 4.0);
+    var dy = 2.0 * curve(this.fr * 3, -x * 4.0);
+
+  	var R = 10 + ra;
+
+    //        t0
+    //    p0 ----- p1
+    //    |        |
+    // t3 |        | t1    0deg
+    //    |        |
+    //    p3 ----- p2
+    //        t2
+
+  	var p0 = util.rotate(-R, -R, a);
+  	var p1 = util.rotate( R, -R, a);
+  	var p2 = util.rotate( R,  R, a);
+  	var p3 = util.rotate(-R,  R, a);
+
+  	// var t0 = util.rotate( 0, -1, a - 90 + 180);
+  	// var t1 = util.rotate( 1,  0, a - 90 + 180);
+  	// var t2 = util.rotate( 0,  1, a - 90 + 180);
+  	// var t3 = util.rotate(-1,  0, a - 90 + 180);
+
+  	var y0 = p0[1] + 16.0 + dy;
+  	var y1 = p1[1] + 16.0 + dy;
+  	var y2 = p2[1] + 16.0 + dy;
+  	var y3 = p3[1] + 16.0 + dy;
+
+    var n0 = p1[0] - p0[0];
+    var n1 = p2[0] - p1[0];
+    var n2 = p3[0] - p2[0];
+    var n3 = p0[0] - p3[0];
+
+  	var s0 = 25.0 * (n0 - 0.5) / R;
+  	var s1 = 25.0 * (n1 - 0.5) / R;
+  	var s2 = 25.0 * (n2 - 0.5) / R;
+  	var s3 = 25.0 * (n3 - 0.5) / R;
+
+  	// var u = x / 2.0 + this.fr * 3.0;
+  	var u = util.lerp(x, 0, 128, 0, this.flag[0].length - 1);
+
+  	if (y1 > y0) texLine(this.g2, x, y0, y1, u, 0, this.flag.length, this.flag, s0);
+  	if (y2 > y1) texLine(this.g2, x, y1, y2, u, 0, this.flag2.length, this.flag2, s1);
+  	if (y3 > y2) texLine(this.g2, x, y2, y3, u, 0, this.flag.length, this.flag, s2);
+  	if (y0 > y3) texLine(this.g2, x, y3, y0, u, 0, this.flag3.length, this.flag3, s3);
+  }
+
+  this.g.downsampleFrom(this.g2);
+  this.g.dither();
   adapter.update(this.g);
 
   this.fr += 0.3;
