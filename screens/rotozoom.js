@@ -42,12 +42,12 @@ RotoZoomScreen.prototype.update = function(adapter) {
   this.g.clear();
   this.g2.clear();
 
-  var dx = 60.0 * curve(this.fr / 3.9, this.fr / 8.7);
-  var dy = 60.0 * curve(this.fr / 4.1, this.fr / 7.9);
+  var dx = 60.0 * curve(this.fr / 5.9, this.fr / 8.7);
+  var dy = 60.0 * curve(this.fr / 6.1, this.fr / 7.9);
 
-  var rr = this.fr * 3;//  60.0 * curve(this.fr / 9.1, this.fr / 5.9);
+  var rr = this.fr * 2;//  60.0 * curve(this.fr / 9.1, this.fr / 5.9);
 
-  var zz = 3.0 + 0.5 * curve(this.fr / 6.0, this.fr / 9.0);
+  var zz = 2.5 + 0.5 * curve(this.fr / 6.0, this.fr / 9.0);
 
   for(var y=0; y<32; y++) {
     for(var x=0; x<128; x++) {
