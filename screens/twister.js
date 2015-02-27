@@ -83,7 +83,7 @@ TwisterScreen.prototype.update = function(adapter) {
     var ra = 1.3 * curve(this.fr * 3, x * 4.0);
     var dy = 2.0 * curve(this.fr * 3, -x * 4.0);
 
-  	var R = 10 + ra;
+  	var R = 12 + ra;
 
     //        t0
     //    p0 ----- p1
