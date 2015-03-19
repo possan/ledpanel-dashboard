@@ -3,7 +3,7 @@ var gif = require('../lib/gif');
 var fs = require('fs');
 
 var RotoZoomScreen = function() {
-  this.screenFrames = 800;
+  this.screenFrames = 0;
   this.fr = 0;
   this.g = new util.PixelBuffer();
   this.g2 = new util.PixelBuffer(128, 64);

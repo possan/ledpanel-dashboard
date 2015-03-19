@@ -6,10 +6,11 @@ var GifTestScreen = function() {
   this.screenFrames = 0;
   this.fr = 0;
   this.g = new util.PixelBuffer();
+  this.g2 = new util.PixelBuffer(128, 64);
   this.img = null;
   this.frames = [];
   this.header = {};
-  var blob = fs.readFileSync('test.gif', 'binary');
+  var blob = fs.readFileSync('css.gif', 'binary');
   var _this = this;
   gif.parseGIF(new gif.Stream(blob), {
   	hdr: function(d) {
@@ -34,18 +35,20 @@ GifTestScreen.prototype.update = function(adapter) {
   	var f = this.frames[Math.floor(this.fr % this.frames.length)];
   	for(var j=0; j<f.height; j++) {
       for(var i=0; i<f.width; i++) {
-        var x = 32 + (((f.leftPos + i) - (this.header.width >> 1)) >> 2);
-        var y = 8 + (((f.topPos + j) - (this.header.height >> 1)) >> 2);
+        var x = 64 + (((f.leftPos + i) - (this.header.width >> 1)) >> 1);
+        var y = 16 + (((f.topPos + j) - (this.header.height >> 1)) >> 1);
         var o = j * f.width + i;
         var c = f.pixels[o];
-        if (c != this.header.bgColor) {
+       if (c != this.header.bgColor) {
       		var rgb = this.header.gct[c];
-       	 	var g = ((rgb[0] + rgb[1] + rgb[2]) % 768.0) > 256.0;
-        	this.g.setPixel(x, y, g);
-        }
+       	 	var g = (rgb[0] + rgb[1] + rgb[2]) / 3;
+        	this.g2.setPixel(x, y, g);
+       }
       }
   	}
-    this.fr += 0.5;
+    this.g.downsampleFrom(this.g2);
+    this.g.dither();
+    this.fr += 1;
   }
   adapter.update(this.g);
 }
