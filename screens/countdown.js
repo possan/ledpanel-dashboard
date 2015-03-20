@@ -37,7 +37,7 @@ CountdownScreen.prototype.update = function(adapter) {
   var now = (new Date()).getTime() / 1000.0;
   // now = (new Date('2015-04-28 03:07:30 +0000')).getTime() / 1000.0;
 
-	var max_days = 12;
+	var max_days = 10;
 
   var progress = christmas - now;
   if (progress < 0) {
