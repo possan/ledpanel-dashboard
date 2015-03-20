@@ -33,7 +33,7 @@ CountdownScreen.prototype.update = function(adapter) {
 
   // some magic constants
   var start = (new Date('2015-03-01 00:00:00 +0000')).getTime() / 1000.0;
-  var christmas = (new Date('2015-04-01 00:00:00 +0000')).getTime() / 1000.0;
+  var christmas = (new Date('2015-03-30 00:11:00 +0100')).getTime() / 1000.0;
   var now = (new Date()).getTime() / 1000.0;
   // now = (new Date('2015-04-28 03:07:30 +0000')).getTime() / 1000.0;
 
